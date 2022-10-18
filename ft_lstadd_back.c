@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 17:58:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2022/10/18 10:07:55 by mjulliat         ###   ########.fr       */
+/*   Created: 2022/10/17 15:04:30 by mjulliat          #+#    #+#             */
+/*   Updated: 2022/10/18 10:52:09 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstadd_back(t_list **lst, t_list *nw)
 {
-	t_list	*new;
+	t_list	*node;
 
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
+	node = *lst;
+	if (node == NULL)
+		node->next = nw;
+	else
 	{
-		return (0);
+		while (node->next != NULL)
+			node = node->next;
+		node->next = nw;
 	}
-	new->content = content;
-	new->next = NULL;
-	return (new);
 }
